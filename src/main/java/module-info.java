@@ -4,7 +4,10 @@ open module beast.labs {
     requires java.xml;
     requires java.scripting;
     requires beagle;
-    requires org.openjdk.nashorn;
+    // Optional: only beastlabs.util.Script uses nashorn, which was removed from
+    // the JDK. A hard 'requires' makes the whole module unresolvable (and thus
+    // skipped) wherever nashorn is absent; 'static' keeps it optional at runtime.
+    requires static org.openjdk.nashorn;
     requires org.apache.commons.statistics.distribution;
     requires org.apache.commons.numbers.gamma;
     requires static beast.fx;
